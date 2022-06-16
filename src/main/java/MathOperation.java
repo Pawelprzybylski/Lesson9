@@ -1,4 +1,4 @@
-public class MathOperation implements  MathOperations{
+public class MathOperation implements  MathOperationsInterface{
 
 
     @Override
