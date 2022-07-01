@@ -1,8 +1,14 @@
-import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Calculator {
 
+    private Map<String, MathOperations> operations = new HashMap<>();
+
+    public void addOperation(String key, MathOperations mathOperations) {
+        this.operations.put(key, mathOperations);
+    }
 
     public static void main(String[] args) {
         System.out.println("Witam w kalkulatorze!");
@@ -10,26 +16,25 @@ public class Calculator {
         boolean runApp = true;
 
         do {
-            calculator(scanner);
-            System.out.println(" Czy chcesz kontyunować?");
+           Calculator calculator=new Calculator();
+           calculator.addOperation("+",new Addition());
+           calculator.addOperation("-",new Substraction());
+           calculator.addOperation("*",new Multiplication());
+           calculator.addOperation("/",new Division());
+
+            System.out.println(" Czy chcesz kontynuować?");
             System.out.println("1. Tak");
             System.out.println("2. Nie");
             int yesOrNo = scanner.nextInt();
             runApp = yesOrNo == 1;
+
         } while (runApp);
-
-
-    }
-
-    private static void calculator(Scanner scanner) {
-        MathOperation mathOperation = new MathOperation();
-
         System.out.println("Wybierz jedną z opcji: ");
-        System.out.println("1. Dodawanie ");
-        System.out.println("2. Odejmowanie ");
-        System.out.println("3. Mnożenie ");
-        System.out.println("4. Dzielenie ");
-        int option = scanner.nextInt();
+        System.out.println("+. Dodawanie ");
+        System.out.println("-. Odejmowanie ");
+        System.out.println("*. Mnożenie ");
+        System.out.println("/. Dzielenie ");
+        String option = scanner.nextLine();
 
         System.out.println("Wprowadź pierwszą liczbę: ");
         int firstNumber = scanner.nextInt();
@@ -37,22 +42,14 @@ public class Calculator {
         System.out.println("Wprowadź drugą liczbę: ");
         int secondNumber = scanner.nextInt();
 
-        switch (option) {
-            case 1:
-                System.out.println("Wynik dodawania to:" + firstNumber + " i " + secondNumber + " to " + mathOperation.add(firstNumber, secondNumber));
-                break;
-            case 2:
-                System.out.println("Wynik odejmowania to:" + firstNumber + secondNumber + mathOperation.substract(firstNumber, secondNumber));
-                break;
-            case 3:
-                System.out.println("Wynik mnożenia to: " + firstNumber + secondNumber + mathOperation.multiply(firstNumber, secondNumber));
-                break;
+    }
 
-            case 4:
-                System.out.println("Wynik dzielenia to: " + firstNumber + secondNumber + mathOperation.divide(firstNumber, secondNumber));
-                break;
+    private void calculate(String option, int firstNumber, int secondNumber) {
+        for (String key : this.operations.keySet()) {
+            if (key.equals(option)) {
+                this.operations.get(key).calculate(firstNumber, secondNumber);
+            }
         }
-
     }
 
 }
