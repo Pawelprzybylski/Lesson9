@@ -1,23 +1,5 @@
-public class MathOperation implements  MathOperationsInterface{
+public interface MathOperation {
 
+ double calculate(double firstNumber, double secondNumber);
 
-    @Override
-    public  double add(double firstNumber, double secondNumber) {
-        return firstNumber+secondNumber;
-    }
-
-    @Override
-    public double substract(double firstNumber, double secondNumber) {
-        return firstNumber-secondNumber;
-    }
-
-    @Override
-    public double multiply(double firstNumber, double secondNumber) {
-        return firstNumber*secondNumber;
-    }
-
-    @Override
-    public double divide(double firstNumber, double secondNumber) {
-        return firstNumber/secondNumber;
-    }
 }

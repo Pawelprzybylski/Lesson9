@@ -1,4 +1,4 @@
-public class Addition implements MathOperations {
+public class Addition implements MathOperation {
 
     @Override
     public double calculate(double firstNumber, double secondNumber) {

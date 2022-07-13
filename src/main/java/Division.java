@@ -1,4 +1,4 @@
-public class Division implements  MathOperations{
+public class Division implements MathOperation {
 
     @Override
     public double calculate(double firstNumber, double secondNumber) {

@@ -1,4 +1,4 @@
-public class Substraction implements MathOperations {
+public class Substraction implements MathOperation {
 
     @Override
     public double calculate(double firstNumber, double secondNumber) {
